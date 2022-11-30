@@ -1,0 +1,26 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+     active
+{% endblock  %}
+
+{% block content %}
+{% load humanize %}
+<div class="row my-5">
+     <div class="col-12 col-md-6 offset-md-3">
+          <div class="card bg-dark py-5 my-5">
+               <div class="d-flex card-header border-light align-content-center">
+                    <h4 class="text-info text-center">Seleccione una Opción</h4>
+               </div>
+               <div class="card-body ms-5 ps-4 border-light">
+                    <a href="{% url 'AddDevModel' %}" class="btn btn-info btn-lg">Agregar Nuevo Modelo</a>
+                    <a href="{% url 'AdminDevModelList' %}" class="btn btn-info btn-lg">Listar Modelos de Dispositivos</a>
+               </div>
+          </div>
+          
+          
+     </div>
+</div>
+{% endblock %}

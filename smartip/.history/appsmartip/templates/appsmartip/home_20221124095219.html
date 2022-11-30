@@ -1,0 +1,22 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+     <h1>Bienvenido a Smart IP</h1>
+     <div class="conatiner">
+          <h4 class="text-info">Por favor complete los campos para solicitar un servicio técnico</h4>
+          <div>
+               <form action="" class="form-group">
+                    
+                    {{ form }}
+                    
+                    <button type="submit" class="btn btn-info">Enviar</button>
+               </form>
+          </div>
+     </div>
+</div>
+
+{% endblock %}

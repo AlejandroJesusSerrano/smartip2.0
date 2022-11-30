@@ -1,0 +1,21 @@
+
+{
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "sweetalert": "^2.1.2"
+  },
+  "name": "appsmartip",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "node-sass": "^8.0.0",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "build-css": "node-sass --include-path scss scss/main.scss css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm     run build-css\""
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
