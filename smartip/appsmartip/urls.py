@@ -11,16 +11,31 @@ urlpatterns = [
      # Db Admin Menu    
      path('admin_db/', admin_db, name='AdminDB'),
      
+     # Database Admin - Locations   
+     path('admin_db/location/', admin_db_location, name='AdminDbLocation'),
+
+     # Database Admin - Ediffices   
+     path('admin_db/office/', admin_db_ediffice, name='AdminDbEdiffice'),
+
      # Database Admin - offices   
      path('admin_db/office/', admin_db_office, name='AdminDbOffice'),
      
      #Database Admin - Devices Type
-     path('admin_db/devtype/', admin_db_dev_type, name='AdminDbDevType'),
+     path('admin_db/devType/', admin_db_dev_type, name='AdminDbDevType'),
+
+     #Database Admin - Devices Brand
+     path('admin_db/devBrand/', admin_db_dev_type, name='AdminDbDevBrand'),
+
+     #Database Admin - Ip´
+     path('admin_db/ip/', search_ip, name='AdminDbIp'),
+
+     #Database Admin - Internet Access
+     path('admin_db/internet/', search_ip, name='AdminDbInternet'),
      
      #CRUD  Database Admin - Devices Type
      path('admin_db/dev_type/add/', add_dev_type, name='AddDevType'),
      
-     #CRUD Database Admin - Model Type
+     #CRUD Database Admin - Model 
      path('admin_db/dev_model/', dev_models, name='AdminDbDevModel'),
      path('admin_db/dev_model/add/', add_dev_model, name='AddDevModel'),
      path('admin_db/dev_model/list/', list_dev_model, name='AdminDevModelList'),

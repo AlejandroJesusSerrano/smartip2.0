@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.models import Group
 
 # Home/Index view
 def home(request):
@@ -42,7 +43,13 @@ def register(request):
      if request.method == 'POST':
           register_form = CustomUserCreationForm(data=request.POST)
           if register_form.is_valid():
-               register_form.save()
+               user = register_form.save()
+
+               if Group.objects.contains['admins']:
+                    group = Group.objects.get(name='admins')
+                    user = authenticate(username=register_form.cleaned_data['username'], password=register_form.cleaned_data['password1'] )
+                    user.groups.add(group)
+               
                user = authenticate(username=register_form.cleaned_data['username'], password=register_form.cleaned_data['password1'] )
                login (request, user)
                messages.success(request, 'registro creado correctamente')
@@ -129,22 +136,15 @@ def delete_dev_model(request, id):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Admin DB Views
 def admin_db(request):
      return render(request, 'appsmartip/admin_db.html')
+
+def admin_db_location(request):
+     return render(request, 'appsmartip/admin_db_location.html')
+
+def admin_db_ediffice(request):
+     return render(request, 'appsmartip/admin_db_ediffice.html')
 
 def admin_db_office(request):
      return render(request, 'appsmartip/admin_db_office.html')

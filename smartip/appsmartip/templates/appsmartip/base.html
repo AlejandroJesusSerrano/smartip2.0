@@ -29,63 +29,207 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
-                  <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% if perms.appsmartip.view_device %}
-                    <li class="nav-item">
-                      <a class="nav-link {% block devmanager_active %} {% endblock  %}" href="{% url 'DevManager' %}">
-                        Gestion Dispositivos
-                      </a>
-                    </li>
-                    {% endif %}
-                    
-                    <li class="nav-item dropdown">
-                      <a class="nav-link {% block dbmanager_active %} {% endblock  %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Gestion de DB
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'AdminDbDevType' %}">Gestionar Tipos de Dispositivos</a></li>
-                        <li><a class="dropdown-item" href="{% url 'AdminDbDevModel' %}">Gestionar Modelos de Dispositivos</a></li>
-                        <li><a class="dropdown-item" href="{% url 'AdminDbOffice' %}">Gestionar Oficinas</a></li>
-                        <li><a class="dropdown-item" href="{% url 'AdminDbStatus' %}">Gestionar Estados</a></li>
-                        <li><a class="dropdown-item" href="{% url 'AdminDbTech' %}">Gestionar Tecnicos</a></li>
-                        <li><a class="dropdown-item" href="{% url 'AdminDbUser' %}">Gestionar Usuarios</a></li>
-                      </ul>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link {% block agenda_active %} {% endblock  %}" href="{% url 'Pending' %}">
-                        Agenda
-                      </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link {% block searchs_active %} {% endblock  %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Búsquedas
-                      </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'SearchIp' %}">Buscar por IP</a></li>
-                        <li><a class="dropdown-item" href="{% url 'SearchDevice' %}">Buscar por Dispositivo</a></li>
-                        <li><a class="dropdown-item" href="{% url 'SearchOffice' %}">Buscar por Oficina</a></li>
-                        <li><a class="dropdown-item" href="{% url 'SearchUser' %}">Buscar por Usuario</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                  <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-info" type="submit">Search</button>
-                  </form>
-                  <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
-                    <li class="nav-item">
-                      <a class="nav-link text-light" href="#">@{{user.username}}</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link text-info" href="{% url 'logout' %}">Cerrar Sesion</a>
-                    </li>
-                  </ul>
-                  {% else %}
-                    {% block session %}
-                    
-                    {% endblock %}
+
+                  {% if perms.appsmartip.view_device %}
+                  <li class="nav-item">
+                    <a class="nav-link {% block devmanager_active %} {% endblock  %}" href="{% url 'DevManager' %}">
+                      Gestion Dispositivos
+                    </a>
+                  </li>
                   {% endif %}
+
+                  {% if perms.core.view_ip %}
+                  <li class="nav-item dropdown">
+                    <a class="nav-link {% block dbmanager_active %} {% endblock  %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Gestion de DB
+                    </a>
+                    <ul class="dropdown-menu">
+                      
+                      {% if perms.core.add_dev_type %}
+                      <li>
+                      
+                        <a class="dropdown-item" href="{% url 'AdminDbDevType' %}">
+                          Gestionar Tipos de Dispositivos
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_brand %}                        
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbDevBrand' %}">
+                          Gestionar Marcas de Dispositivos
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_model %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbDevModel' %}">
+                          Gestionar Modelos de Dispositivos
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_ip %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbIp' %}">
+                          Gestionar Direcciones IP
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_internet_access %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbInternet' %}">
+                          Gestionar Accesos a Internet
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+
+                      {% if perms.core.add_location %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbLocation' %}">
+                          Gestionar Localidades
+                        </a>
+                        
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_ediffice %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbEdiffice' %}">
+                          Gestionar Edificios
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_office %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbOffice' %}">
+                          Gestionar Oficinas
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_dev_status %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbStatus' %}">
+                          Gestionar Estados de Dispositivos
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_pending_status %}
+                      <li>
+
+                        <a class="dropdown-item" href="#">
+                          Gestionar Estados de Pendientes
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_tech %}
+                      <li>
+
+                        <a class="dropdown-item" href="{% url 'AdminDbTech' %}">
+                          Gestionar Tecnicos
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                      {% if perms.core.add_dev_user %}
+                      <li>
+                        
+                        <a class="dropdown-item" href="{% url 'AdminDbUser' %}">
+                          Gestionar Usuarios
+                        </a>
+
+                      </li>
+                      {% endif %}
+
+                    </ul>
+
+                  </li>
+                  {% endif %}
+                    
+                  {% if perms.core.view_pendings %}
+                  <li class="nav-item">
+                    
+                    <a class="nav-link {% block agenda_active %} {% endblock  %}" href="{% url 'Pending' %}">
+                      Agenda
+                    </a>
+
+                  </li>
+                  {% endif %}
+
+                  {% if perms.core.add_location %}
+                  <li class="nav-item dropdown">
+
+                    <a class="nav-link {% block searchs_active %} {% endblock  %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Búsquedas
+                    </a>
+
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{% url 'SearchIp' %}">Buscar por IP</a></li>
+                      <li><a class="dropdown-item" href="{% url 'SearchDevice' %}">Buscar por Dispositivo</a></li>
+                      <li><a class="dropdown-item" href="{% url 'SearchOffice' %}">Buscar por Oficina</a></li>
+                      <li><a class="dropdown-item" href="{% url 'SearchUser' %}">Buscar por Usuario</a></li>
+                    </ul>
+                  </li>                    
+                </ul>
+                  
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-info" type="submit">Search</button>
+                </form>
+                {% endif %}
+                <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
+
+                  <li class="nav-item">
+
+                    <a class="nav-link text-light" href="#">
+                      @{{user.username}}
+                    </a>
+
+                  </li>
+
+                  <li class="nav-item">
+
+                    <a class="nav-link text-info" href="{% url 'logout' %}">
+                      Cerrar Sesion
+                    </a>
+
+                  </li>
+
+                </ul>
+
+                {% else %}
+                  {% block session %}
+
+                  {% endblock %}
+                {% endif %}
+
               </div>
             </div>
           </nav>

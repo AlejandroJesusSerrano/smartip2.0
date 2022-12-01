@@ -82,7 +82,7 @@ class Tech (models.Model):
      def __str__(self):
           return self.name
 
-class Status (models.Model):
+class DevStatus (models.Model):
      status = models.CharField(max_length=15)
 
      def __str__(self):
@@ -106,7 +106,7 @@ class Device(models.Model):
      def __str__(self):
           return self.dev_name
 
-class State(models.Model):
+class PendingStatus(models.Model):
      status = models.CharField(max_length=19)
 
      def __str__(self):
@@ -119,7 +119,7 @@ class Pendings(models.Model):
      service_for = models.ForeignKey(DevUsers, related_name='user_for', on_delete=models.CASCADE)
      device = models.ForeignKey(Device, on_delete=models.CASCADE)
      reason = models.TextField()
-     state = models.ForeignKey(State, default=1, on_delete=models.CASCADE)
+     state = models.ForeignKey(PendingStatus, default=1, on_delete=models.CASCADE)
      updated = models.DateField(auto_now=True)
 
      def __str__(self):
@@ -133,7 +133,7 @@ class AssignedTech(models.Model):
      date = models.DateField()
      observations = models.TextField()
      repair = models.CharField(max_length=50)
-     status = models.ForeignKey(State, on_delete=models.CASCADE)
+     status = models.ForeignKey(PendingStatus, on_delete=models.CASCADE)
      updated = models.DateField(auto_now=True)
 
      def __str__(self):
