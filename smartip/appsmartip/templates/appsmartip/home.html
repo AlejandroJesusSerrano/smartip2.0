@@ -42,6 +42,11 @@
                               {% csrf_token %}
 
                               {{ home_form | crispy }}
+                              <datalist id="required_by">
+                                   {% for user in required_by %}
+                                        <option value="{{ user }}"></option>
+                                   {% endfor %}
+                              </datalist>
 
                               <div class="d-flex justify-content-end">
                                    <input type="reset" value="Cancelar" class="btn btn-secondary">

@@ -1,14 +1,24 @@
+from django.contrib import admin
 from django import forms
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.forms import ValidationError
+from .validators import MaxSizeFileValidator
 
 
 class HomeForm(forms.ModelForm):
      class Meta:
           model = Pendings
           fields = ['required_by', 'personal', 'service_for', 'device', 'reason']
-     
+          widgets = {
+               'required_by': forms.TextInput(attrs={
+                    'placeholder': 'Usuario de ingreso a Pc',
+                    'autofocus':'autofocus',
+                    'list': 'required_by',
+                    'class': 'form-control'
+               })
+          }     
 
 
 class DevTypeFormAdd(forms.ModelForm):
@@ -18,6 +28,17 @@ class DevTypeFormAdd(forms.ModelForm):
 
 
 class DevModelFormAdd(forms.ModelForm):
+
+     def clean_model(self):
+          model = self.cleaned_data['model']
+          is_in = Model.objects.filter(model__iexact=model).exists()
+
+          if is_in:
+               raise ValidationError('Este modelo ya se encuentra en la Base de Datos')
+
+          return model
+
+     img = forms.ImageField(required=True, validators=[MaxSizeFileValidator(max_file_size=5)])
      class Meta:
           model = Model
           fields = '__all__'

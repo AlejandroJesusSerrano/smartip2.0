@@ -1,5 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from appsmartip.views import *
+from rest_framework import routers
+
+
+router = routers.DefaultRouter()
+router.register('model', ModelViewset)
+
 
 urlpatterns = [
      # Home
@@ -41,6 +47,7 @@ urlpatterns = [
      path('admin_db/dev_model/list/', list_dev_model, name='AdminDevModelList'),
      path('admin_db/dev_model/edit/<id>/', edit_dev_model, name='EditDevModel'),
      path('dev_model_delete/<id>/', delete_dev_model, name='DeleteDevModel'),
+     path('api/', include(router.urls)),
 
      path('admin_db/status/', admin_db_status, name='AdminDbStatus'),
      path('admin_db/tech/', admin_db_tech, name='AdminDbTech'),

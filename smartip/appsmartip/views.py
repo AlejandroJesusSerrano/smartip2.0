@@ -7,6 +7,26 @@ from django.http import Http404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import Group
+from rest_framework import viewsets
+from .serializers import ModelSerializer
+#Create your views here.
+
+class ModelViewset(viewsets.ModelViewSet):
+     queryset = Model.objects.all()
+     serializer_class = ModelSerializer
+
+     def get_queryset(self):
+          models = Model.objects.all()
+
+          model = self.request.GET.get('model')
+
+          if model:
+               models = models.filter(model__contains=model)
+
+          return models
+
+
+
 
 # Home/Index view
 def home(request):

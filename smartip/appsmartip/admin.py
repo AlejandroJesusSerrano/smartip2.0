@@ -1,7 +1,11 @@
 from django.contrib import admin
 from .models import *
+from .forms import DevModelFormAdd
 
 # Register your models here.
+
+class ModelAdmin(admin.ModelAdmin):
+     form = DevModelFormAdd
 
 admin.site.register(Brand)
 admin.site.register(Model)

@@ -139,8 +139,6 @@ class AssignedTech(models.Model):
      def __str__(self):
           return self.tech
 
-#!Verificar con bibliotecas de Djandgo
-# class SystemUsers(models.Model):
 
 
 
