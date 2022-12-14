@@ -1,0 +1,71 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block session %}
+     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+               <a class="nav-link" href="{% url 'login' %}">
+                    Iniciar Sesion
+               </a>
+          </li>
+          <li class="nav-item">
+               <a class="nav-link" href="{% url 'Register' %}">
+                    Registrate
+               </a>
+          </li>
+     </ul>
+{% endblock %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% if user.is_authenticated and perms.admin %}
+     <div class="row my-2">
+          <div class="   mx-auto my-auto col-12 col-md-6 offset-md-3">
+               <h1 class="mx-auto text-info text-center">Bienvenido al panel de Control de SMART IP</h1>
+               <hr>
+          </div>
+     </div>
+{% else %}
+     <div class="row my-2">
+          <div class="col-12 col-md-6 offset-md-3">
+               <h1 class="mx-auto text-info text-center">Bienvenido a Smart IP</h1>
+               <hr>
+               <div class="card">
+                    <div class="card-header bg-dark border-light">
+                         <h4 class="text-info text-center">Por favor complete los campos para solicitar un servicio técnico</h4>
+                    </div>
+                    <div class="card-body bg-dark">
+                         <form action="" class="form-group text-light" method="post">
+                              {% csrf_token %}
+
+                              {{ home_form | crispy }}
+                              <datalist id="required_by">
+                                   {% for user in required_by %}
+                                        <option value="{{ user }}"></option>
+                                   {% endfor %}
+                              </datalist>
+
+                              <div class="d-flex justify-content-end">
+                                   <input type="reset" value="Cancelar" class="btn btn-secondary">
+                                   &nbsp;
+                                   <button type="submit" class="btn btn-info">Enviar</button>
+                              </div>
+                         </form>
+                         <p class="text-light">{{message}}</p>
+                    </div>
+               </div>
+          </div>
+     </div>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+     <script>
+          $(document).ready(function () {
+               $('#required_by').select2();
+     </script>
+{% endblock %}

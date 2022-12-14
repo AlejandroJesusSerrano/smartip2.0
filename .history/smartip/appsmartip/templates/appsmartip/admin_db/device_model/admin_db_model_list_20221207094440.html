@@ -1,0 +1,70 @@
+{% extends 'appsmartip/base.html' %}
+
+{% block js %}
+
+     <!-- <script>
+          function deleteModel(id){
+               Swal.fire({
+                    "title": "¿estas seguro?",
+                    "text": "vas a eliminar el modelo de la Base de Datos, esta acción no se puede deshacer",
+                    "icon": "warning",
+                    "showCancelButton": true,
+                    "cancelButtonText": "No, Cancelar",
+                    "cancelButtonColor": "#13a168",
+                    "confirmButtonColor": "#dc3545",
+                    "confirmButtonText": "Si, Eliminar", 
+                    "reverseButtons":true,
+               })
+               .then(function(result) {
+                    if(result.isConfirmed) {
+                         window.location.href = "/dev_model_delete/"+id+"/"
+                    }
+               })
+          }
+     </script> -->
+
+{% endblock %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+     active
+{% endblock  %}
+
+{% block content %}
+{% load humanize %}
+<div class="card">
+     <div class="card-header">
+          <h4 class="text-dark text-center">
+               Listado de modelos
+          </h4>
+     </div>
+     <div class="card-body">
+          <table class="table table-striped table-hover table-responsive-sm">
+               <tr>
+                    <th>Modelo</th>
+                    <th>Imagen</th>
+                    <th>Opciones</th>
+               </tr>
+     
+               {% for m in entity %}
+     
+                    <tr>
+                         <td>{{ m.model | title }}</td>
+                         <td>{{ m.img }}</td>
+                         <td>
+                              <a href="{% url 'EditDevModel' m.id %}" class="btn btn-info btn-sm">Editar</a>
+                              <a href="#" onclick="deleteModel({{ m.id }})" class="btn btn-danger btn-sm">Eliminar</a>
+                         </td>
+                    </tr>
+     
+               {% endfor %}
+          </table>
+          <hr>
+          <div>
+               {% include 'appsmartip/paginator.html' %}
+          </div>
+     </div>
+</div>     
+
+{% endblock %}

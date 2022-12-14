@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'appsmartip/img/favicon.svg'%}" sizes="32x32">
+
+    <!-- *JQUERY -->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <!--* CSS STYLES -->
+    <!-- Select 2 CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'appsmartip/node_modules/bootstrap/dist/css/bootstrap.min.css' %}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'appsmartip/css/main.css' %}">
+
+    <!-- JS -->
+    <script defer src="{% static 'appsmartip/js/main.js' %}"></script>    
+    
+    <title>Smart Ip - Bienvenido</title>
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'Home'}">
+          <div class="logo my-2">
+            <a href="{% url 'Home' %}" class="scrollto"><img src="{% static 'appsmartip/img/smartip_nav_brand.svg'%}" alt="" class="img-fluid"></a>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+
+            {% if perms.appsmartip.view_device %}
+            <li class="nav-item">
+              <a class="nav-link {% block devmanager_active %} {% endblock  %}" href="{% url 'DevManager' %}">
+                Gestion Dispositivos
+              </a>
+            </li>
+            {% endif %}
+
+            {% if perms.core.view_ip %}
+            <li class="nav-item dropdown">
+              <a class="nav-link {% block dbmanager_active %} {% endblock  %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Gestion de DB
+              </a>
+              <ul class="dropdown-menu">
+                      
+                {% if perms.core.add_dev_type %}
+                <li>
+                    
+                  <a class="dropdown-item" href="{% url 'AdminDbDevType' %}">
+                    Gestionar Tipos de Dispositivos
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_brand %}                        
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbDevBrand' %}">
+                    Gestionar Marcas de Dispositivos
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_model %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbDevModel' %}">
+                    Gestionar Modelos de Dispositivos
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_ip %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbIp' %}">
+                    Gestionar Direcciones IP
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_internet_access %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbInternet' %}">
+                    Gestionar Accesos a Internet
+                  </a>
+
+                </li>
+                {% endif %}
+
+
+                {% if perms.core.add_location %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbLocation' %}">
+                    Gestionar Localidades
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_ediffice %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbEdiffice' %}">
+                    Gestionar Edificios
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_office %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbOffice' %}">
+                    Gestionar Oficinas
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_dev_status %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbStatus' %}">
+                    Gestionar Estados de Dispositivos
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_pending_status %}
+                <li>
+
+                  <a class="dropdown-item" href="#">
+                    Gestionar Estados de Pendientes
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_tech %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbTech' %}">
+                    Gestionar Tecnicos
+                  </a>
+
+                </li>
+                {% endif %}
+
+                {% if perms.core.add_dev_user %}
+                <li>
+
+                  <a class="dropdown-item" href="{% url 'AdminDbUser' %}">
+                    Gestionar Usuarios
+                  </a>
+
+                </li>
+                {% endif %}
+
+              </ul>
+
+            </li>
+            {% endif %}
+
+            {% if perms.core.view_pendings %}
+            <li class="nav-item">
+
+              <a class="nav-link {% block agenda_active %} {% endblock  %}" href="{% url 'Pending' %}">
+                Agenda
+              </a>
+
+            </li>
+            {% endif %}
+
+            {% if perms.core.add_location %}
+            <li class="nav-item dropdown">
+
+              <a class="nav-link {% block searchs_active %} {% endblock  %} dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Búsquedas
+              </a>
+
+            </li>                    
+
+          </ul>
+                  
+          {% endif %}
+          <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
+
+            <li class="nav-item">
+
+              <a class="nav-link text-light" href="#">
+                  @{{user.username}}
+              </a>
+
+            </li>
+
+            <li class="nav-item">
+
+              <a class="nav-link text-info" href="{% url 'logout' %}">
+                Cerrar Sesion
+              </a>
+
+            </li>
+
+          </ul>
+
+          {% else %}
+            {% block session %}
+
+            {% endblock %}
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <div id="content">
+      <img class="bkg" src="{% static 'appsmartip/img/smip_background.png' %}" alt="Edificio de los Tribunales Federales de Salta">
+      {% block content %}
+    
+      {% endblock %}
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="section-bg">
+        <div class="footer-cont mt-5 footer-top bg-dark">
+            <div class="footer-cont container bg-dark">
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+
+                                <div class="footer-info">
+                                    <h3 class="text-info">Smart Ip</h3>
+                                    <p class="text-light">Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
+                                </div>
+
+                                <div class="footer-newsletter">
+                                    <h4 class="text-info">Our Newsletter</h4>
+                                    <p class="text-light">Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem.</p>
+                                    <form action="" method="post">
+                                        <input type="email" name="email"><input type="submit"  value="Subscribe">
+                                    </form>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="col-sm-6">
+                            <div class="footer-links">
+                                <h4 class="text-info">Useful Links</h4>
+                                <ul>
+                                    <li><a class="text-light" href="#">Home</a></li>
+                                    <li><a class="text-light" href="#">About us</a></li>
+                                    <li><a class="text-light" href="#">Services</a></li>
+                                    <li><a class="text-light" href="#">Terms of service</a></li>
+                                    <li><a class="text-light" href="#">Privacy policy</a></li>
+                                </ul>
+                        </div> -->
+
+                        <!-- <div class="footer-links">
+                            <h4 class="text-info">Contact Us</h4>
+                            <p class="text-light">
+                                A108 Adam Street <br>
+                                New York, NY 535022<br>
+                                United States <br>
+                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@example.com<br>
+                            </p>
+                        </div> -->
+
+                        <!-- <div class="social-links">
+                            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                        </div> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- <div class="col-lg-6"> -->
+
+            <!-- <div class="form">
+              
+                <h4 class="text-info">Send us a message</h4>
+                <p class= "text-light">Eos ipsa est voluptates. Nostrum nam libero ipsa vero. Debitis quasi sit eaque numquam similique commodi harum aut temporibus.</p>
+                <form action="" method="post" role="form" class="contactForm">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                        <div class="validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                        <div class="validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                        <div class="validation"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                        <div class="validation"></div>
+                    </div>
+
+                    <div id="sendmessage">Your message has been sent. Thank you!</div>
+                    <div id="errormessage"></div>
+
+                    <div class="text-center"><button type="submit" title="Send Message">Send Message</button></div>
+                </form>
+            </div> -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>Alejandro Jesúds Serrano</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Rapid
+        -->
+        Designed by <a href="https://AJS.com/">AJS</a>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+  
+  <!-- *JS SCRIPTS -->
+  <!-- PopperJS -->
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <!-- Bootstrap JS -->
+  <script src="{% static 'appsmartip/node_modules/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+  <!-- Sweet Alert 2-->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+
+  {% if messages %}
+    {% for m in messages %}
+    <script>
+      Swal.fire({
+        "title": "Felicitaciones",
+        "text": "{{m}}",
+        "icon": "success"
+      })
+    </script>
+    {% endfor %}
+  {% endif %}
+
+  {% block js %}
+  {% endblock %}
+  
+  <!-- Select 2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- JS -->
+  <script src="{% static 'appsmartip/js/main.js' %}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+}
+
+header {
+     position:relative;
+     overflow: hidden;
+     .bkg{
+          opacity: 1;
+          overflow: hidden;
+          position:absolute;
+          width: 100%;
+          top: 0;
+     }
+}
+
+.logo{
+     width: 10rem;
+}

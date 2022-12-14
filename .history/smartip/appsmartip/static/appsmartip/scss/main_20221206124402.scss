@@ -1,0 +1,22 @@
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+}
+
+.background {
+     position:relative;
+     overflow: hidden;
+
+
+     img {
+          position: absolute;
+          margin: 0;
+          width: 100%;
+          opacity: 0.3;
+     }
+}
+
+.logo{
+     width: 10rem;
+}

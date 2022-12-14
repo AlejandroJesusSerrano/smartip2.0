@@ -1,0 +1,36 @@
+{% extends 'appsmartip/base.html' %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<body>
+     <div class="container">
+          <div class="row">
+               <div class="col-12 col-md-6 offset-3">
+                    <div class="card">
+                         <div class="card-header">
+                              <h2 class="text-info"> Registro de usuario </h2>
+                         </div>
+                         <div class="card-body">
+                              <form action="" method="post">
+                                   
+                                   {% csrf_token %}
+
+                                   {{ form | crispy }}
+
+                                   <a href="{% url 'Home' %}">Ir al Home</a>
+                                   <a href="{% url 'login' %}">Iniciar Sesion</a>
+
+                                   <input type="submit" class="btn btn-info" value="Registrar">
+
+                              </form>
+
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</body>
+
+{% endblock %}

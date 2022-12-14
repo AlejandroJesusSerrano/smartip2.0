@@ -1,0 +1,86 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block devmanager_active %}
+active
+{% endblock  %}
+
+{% block content %}
+
+<h2 class="text-info text center">Gestion de Dispoditivos</h2>
+<hr>
+
+<div class="container col-12 col-md-6 offset-3 my-5">
+     <form class="d-flex" method="get" role="search">
+          <div class="input-group">
+               <input class="form-control me-2" type="search" name="search" placeholder="Buscar" aria-label="Search">
+               <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit">Buscar</button>
+               </div>
+          </div>
+          
+     </form>
+</div>
+
+<div class="mx-auto my-auto col-12 col-md-12 offset-6">
+     <div class="card">
+          <div class="card-header">
+               <h4 class="text-dark text-center">
+                    Resultado de la busqueda
+               </h4>
+          </div>
+          <div class="card-body">
+               <table class="table table-striped table-hover table-responsive-sm">
+                    <tr>
+                         <th>Dispositivo</th>
+                         <th>Tipo de Dispositivo</th>
+                         <th>Marca</th>
+                         <th>Modelo</th>
+                         <th>Esta Activo</th>
+                         <th>Esta trabajando</th>
+                         <th>Ip asignada</th>
+                         <th>Ùltima revision</th>
+                         <th>Motivo</th>
+                         <th>Tecnico que la realizo</th>
+                         <th>Tiene usuario asignado</th>
+                         <th>Usuario</th>
+                         <th>Oficina</th>
+                         <th>Acciones</th>
+                    </tr>
+               
+                    {% for s in device %}
+                         <tr>
+                              <td>{{ s.dev_name }}</td>
+                              <td>{{ s.dev_type }}</td>
+                              <td>{{ s.brand | title }}</td>
+                              <td>{{ s.model }}</td>
+                              <td>{{ s.is_active }}</td>
+                              <td>{{ s.is_working }}</td>
+                              <td>{{ s.ip_direction }}</td>
+                              <td>{{ s.last_revision }}</td>
+                              <td>{{ s.cause }}</td>
+                              <td>{{ s.tech_revision }}</td>
+                              <td>{{ s.has_user }}</td>
+                              <td>{{ s.user }}</td>
+                              <td>{{ s.office }}</td>
+                              <td>
+                                   <a href="{% url 'DevAdd' %}" class="btn btn-info btn-sm">
+                                        <i class="bi-plus-circle"></i>
+                                   </a>
+
+                                   <a href="{% url 'DevEdit' %" class="btn btn-warning btn-sm">
+                                        <i class="bi-pencil-square"></i>
+                                   </a>
+                                   <a href="#" onclick="deleteModel({{ m.id }})" class="btn btn-danger btn-sm">
+                                        <i class="bi-trash"></i>
+                                   </a>
+                                   
+                              </td>
+                         </tr>
+                    {% endfor %}
+               </table>
+          </div>
+     </div>     
+</div>
+{% endblock %}

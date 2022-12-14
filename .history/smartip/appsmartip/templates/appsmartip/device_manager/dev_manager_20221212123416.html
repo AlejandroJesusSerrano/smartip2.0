@@ -1,0 +1,83 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block devmanager_active %}
+active
+{% endblock  %}
+
+{% block content %}
+
+<h2 class="text-info text center">Gestion de Dispoditivos</h2>
+<hr>
+
+<div class="container col-12 col-md-6 offset-3 my-5">
+     <form class="d-flex" method="get" role="search">
+          <div class="input-group">
+               <input class="form-control me-2" type="search" name="search" placeholder="Buscar" aria-label="Search">
+               <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit">Buscar</button>
+               </div>
+          </div>
+          
+     </form>
+</div>
+
+<div class="mx-auto my-auto col-12 col-md-12 offset-6">
+     <div class="card text-sm">
+          <div class="card-header">
+               <h4 class="text-dark text-center">
+                    Resultado de la busqueda
+               </h4>
+          </div>
+          <div class="card-body">
+               <table class="table table-striped table-hover table-responsive-sm">
+                    <tr>
+                         <th><small>Dispositivo</small></th>
+                         <th><small>Tipo</small></th>
+                         <th><small>Marca</small></th>
+                         <th><small>Modelo</small></th>
+                         <th><small>Activo</small></th>
+                         <th><small>Trabajando</small></th>
+                         <th><small>Usuario</small></th>
+                         <th><small>Oficina</small></th>
+                         <th><small>Ip</small></th>
+                         <th><small>Ùltima revision</small></th>
+                         <th><small>Motivo</small></th>
+                         <th><small>Tecnico</small></th>
+                         <th><small>Acciones</small></th>
+                    </tr>
+               
+                    {% for s in device %}
+                         <tr>
+                              <td><small>{{ s.dev_name }}</small></td>
+                              <td><small>{{ s.dev_type }}</small></td>
+                              <td><small>{{ s.brand | title }}</small></td>
+                              <td><small>{{ s.model }}</small></td>
+                              <td><small>{{ s.is_active }}</small></td>
+                              <td><small>{{ s.is_working }}</small></td>
+                              <td><small>{{ s.user }}</small></td>
+                              <td><small>{{ s.office }}</small></td>
+                              <td><small>{{ s.ip_direction }}</small></td>
+                              <td><small>{{ s.last_revision }}</small></td>
+                              <td><small>{{ s.cause }}</small></td>
+                              <td><small>{{ s.tech_revision }}</small></td>
+                              <td>
+                                   <a href="{% url 'DevAdd' %}" class="btn btn-info btn-sm">
+                                        <i class="bi-plus-lg"></i>
+                                   </a>
+
+                                   <a href="{% url 'DevEdit' %" class="btn btn-warning btn-sm">
+                                        <i class="bi-pencil-square"></i>
+                                   </a>
+                                   <a href="#" onclick="deleteModel({{ m.id }})" class="btn btn-danger btn-sm">
+                                        <i class="bi-trash"></i>
+                                   </a>
+                              </td>
+                         </tr>
+                    {% endfor %}
+               </table>
+          </div>
+     </div>     
+</div>
+{% endblock %}

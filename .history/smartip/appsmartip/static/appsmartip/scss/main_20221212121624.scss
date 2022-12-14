@@ -1,0 +1,56 @@
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     font-size: 1.5rem;
+}
+
+body {
+     position: relative;
+     object-fit: cover;
+     box-sizing: border-box;
+
+     .bkg{
+          opacity: .25;
+          overflow:hidden;
+          height: 100vh;
+          object-fit: cover;
+          top: 2.5em;
+          right: 0;
+          position:absolute;
+          z-index: -1;
+     }
+}
+
+.navbar {
+     position: relative;
+}
+
+.footer-cont{
+     position: relative;
+     width: 100%;
+}
+
+.div-title{
+     border-radius: 1em;
+     position:relative;
+     padding: .5em;
+     
+     .title{
+          position: relative;
+     }
+
+}
+
+.card{
+     border-radius: 1em;
+}
+
+.logo{
+     width: 10rem;
+}
+
+.search-form{
+     position: relative;
+     z-index: 0;
+}

@@ -1,0 +1,7 @@
+django == 4.1.3
+pillow
+django_admin_interface
+django_crispy_forms
+crispy-bootstrap5
+django-rest-framework
+

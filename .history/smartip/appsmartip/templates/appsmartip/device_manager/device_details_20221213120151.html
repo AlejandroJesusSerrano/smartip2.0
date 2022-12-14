@@ -1,0 +1,60 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block devmanager_active %}
+     active
+{% endblock  %}
+
+{% block content %}
+<div class="row my-5">
+     <div class="col-12 col-md-8 offset-2">
+          <div class="card mx-auto">
+               <div class="card-header">
+                    <h4 class="text-info text-center">Dispositivo: {{device.dev_name}}</h4>
+               </div>
+               <div class="card-body">
+                    <div class="d-flex justify-content-evenly">
+                         <img src="/media/{{device.model.img}}" class="w-25" alt="...">
+                         <div class="container">
+                              <p class="card-title">Tipo de dispositivo: {{device.dev_type}}</p>
+                              <p class="card-title">Marca: {{device.brand}}</p>
+                              <p class="card-title">Modelo: {{device.model}}</p>
+                         </div>
+                         <div class="container">
+                              {% if device.is_working == True %}
+                                   <p class="card-text">Funciona: Si </p>
+                              {% else %}
+                                   <p class="card-text">Funciona: NO</p>
+                              {% endif %}
+                         
+                              {% if device.is_active == True %}
+                                   <p class="card-text">Esta Activo: No </p>
+                              {% else %}
+                                   <p class="card-text">Esta Activo: NO</p>
+                              {% endif %}
+                         </div>
+                    </div>
+               </div>
+               <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                         <div class="container">
+                              <h4 class="card-title text-center text-info">Red</h4>
+                              <div class="d-flex justify-content-between">
+                                   <p class="card-text">Direccion Ip: {{device.ip_direction.ipdir}}</p>
+                                   <p class="card-text"><b> Acceso Internet: </b> {{device.ip_direction.internet_access}}</p>
+                              </div>
+                         </div>
+                    </li>
+                    <li class="list-group-item">A second item</li>
+                    <li class="list-group-item">A third item</li>
+               </ul>
+               <div class="card-body">
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+               </div>
+          </div>
+     </div>
+</div>
+
+{% endblock %}
