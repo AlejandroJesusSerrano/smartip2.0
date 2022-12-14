@@ -41,7 +41,7 @@ class HomeForm(forms.ModelForm):
                }), 
 
                'reason': CKEditorWidget(attrs={
-                    'class': 'd-flex align-items-bottom mx-auto'
+                    'class': 'mx-auto'
                })
 
           }     
