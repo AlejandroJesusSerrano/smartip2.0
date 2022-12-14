@@ -4,6 +4,11 @@
 <head>
   {% load static %}
 
+  {% block extrahead %}
+  <script>window.CKEDITOR_BASEPATH = "{% static 'appsmartip/ckeditor' %}"</script>
+  {{ block.super }}
+  {% endblock %}
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -389,7 +394,9 @@
 
   {% block js %}
   {% endblock %}
-  
+  <!-- CKEditor JS -->
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+  <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
   <!-- Select 2 JS -->
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <!-- JS -->

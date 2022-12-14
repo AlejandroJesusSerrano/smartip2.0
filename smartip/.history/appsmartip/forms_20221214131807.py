@@ -27,6 +27,7 @@ class HomeForm(forms.ModelForm):
                'required_by': forms.Select(attrs={
                     'class': 'form-control', 
                     'id':'required_by',
+
                }),
 
                'service_for':forms.Select(attrs={

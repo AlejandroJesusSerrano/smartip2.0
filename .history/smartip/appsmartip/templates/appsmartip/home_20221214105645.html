@@ -94,7 +94,7 @@
                          <form action="" class="form-group text-light" method="post">
                               {% csrf_token %}
 
-                              {{ home_form.media }}
+                              {{ homr_form.media }}
                               {{ home_form | crispy }}
                               <datalist id="required_by">
                                    {% for user in required_by %}

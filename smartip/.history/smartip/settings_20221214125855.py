@@ -162,7 +162,7 @@ CKEDITOR_CONFIGS = {
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS=[
-    BASE_DIR / "appsmartip/static/appsmartip",
+    BASE_DIR / "appsmartip/static",
 ]
 
 STATIC_ROOT = BASE_DIR / 'static'

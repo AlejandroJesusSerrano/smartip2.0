@@ -42,14 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ckeditor',
-    'ckeditor_uploader',
     'appsmartip',
     'colorfield',
     'django.contrib.humanize',
     'crispy_forms',
     'crispy_bootstrap5',
-    'rest_framework'
+    'rest_framework',
+    'ckeditor',
+    'ckeditor_uploader'
     ]
 # Crispy Forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
@@ -133,27 +133,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-# CKEditor Conf
-CKEDITOR_UPLOAD_PATH = "uploads/"
-
-CKEDITOR_CONFIGS = {
-    'awesome_ckeditor': {
-        'toolbar': 'Basic',
-    },
-}
-
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source']
-        ]
-    }
-}
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -162,14 +141,13 @@ CKEDITOR_CONFIGS = {
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS=[
-    BASE_DIR / "appsmartip/static/appsmartip",
+    BASE_DIR / "appsmartip/static",
 ]
 
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / "static"
 
-#Media conf
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

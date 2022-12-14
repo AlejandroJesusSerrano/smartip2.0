@@ -5,10 +5,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.forms import ValidationError
 from .validators import MaxSizeFileValidator
-
+from ckeditor.widgets import CKEditorWidget
 
 class HomeForm(forms.ModelForm):
-     
+     reason=forms.CharField(widget=CKEditorWidget())
      class Meta:
           model = Pendings
           fields = ['required_by', 'personal', 'service_for', 'device', 'reason']
@@ -27,6 +27,7 @@ class HomeForm(forms.ModelForm):
                'required_by': forms.Select(attrs={
                     'class': 'form-control', 
                     'id':'required_by',
+
                }),
 
                'service_for':forms.Select(attrs={
@@ -39,6 +40,11 @@ class HomeForm(forms.ModelForm):
                     'id': 'device',
                }), 
 
+               # 'reason': forms.Textarea(attrs={
+               #      'class': 'form-control',
+               #      'id': 'reason',
+               #      'placeholder': "Ingrese la descripción del problema"
+               # })
           }     
 
 #Device Type Form
