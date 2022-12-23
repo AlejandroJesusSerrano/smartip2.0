@@ -1,0 +1,100 @@
+{% extends 'appsmartip/base.html' %}
+
+{% block js %}
+
+     <script>
+          function deleteType(id){
+               Swal.fire({
+                    "title": "¿estas seguro?",
+                    "text": "vas a eliminar el tipo de dispositivo de la Base de Datos, esta acción no se puede deshacer",
+                    "icon": "warning",
+                    "iconColor": "#0dcaf0",
+                    "showCancelButton": true,
+                    "cancelButtonText": "No, Cancelar",
+                    "cancelButtonColor": "#0dcaf0",
+                    "confirmButtonColor": "#dc3545",
+                    "confirmButtonText": "Si, Eliminar", 
+                    "reverseButtons":true,
+               })
+               .then(function(result) {
+                    if(result.isConfirmed) {
+                         window.location.href = "/dev_type_delete/"+id+"/"
+                    }
+               })
+          }
+     </script>
+
+{% endblock %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+     active
+{% endblock  %}
+
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<div class="card col-8 offset-2">
+     <div class="card-header">
+          <h4 class="text-dark text-center">
+               Listado de modelos
+          </h4>
+     </div>
+     <div class="d-flex">
+          <a href="{% url 'AddDevModel' %}" class="mt-5 mb-0 me-3 btn btn-info btn-md ms-auto">
+               Agregar Modelo <i class="bi-plus-lg"></i>
+          </a>
+     </div>
+     
+     <div class="container col-12 col-md-6 offset-3 my-0">
+     
+          <form class="d-flex" method="get" role="search">
+               <div class="input-group">
+                    <input class="form-control me-2" type="search" name="searchM" placeholder="Buscar" aria-label="Search">
+                    <div class="input-group-append">
+                         <button class="btn text-info btn-dark" type="submit"> Buscar <i class="bi-search"></i></button>
+                    </div>
+               </div>     
+          </form>
+     
+     </div>
+     
+     <div class="card-body">
+          <table class="table table-striped table-hover table-responsive-sm">
+               <tr class="text-center">
+                    <th class="my-auto">Imagen</th>
+                    <th>Url Imagen</th>
+                    <th>Modelo</th>
+                    <th>Opciones</th>
+               </tr>
+     
+               {% for m in entity %}
+     
+                    <tr class="text-center">
+                         <td><img src="/media/{{ m.img }}" class="imgTable" alt="..."></td>
+                         <td>{{ m.img }}</td>
+                         <td>{{ m.model | title }}</td>
+                         <td>
+                              <a href="{% url 'EditDevModel' m.id %}" class="btn btn-warning btn-sm">
+                                   <i class="bi-pencil-square"></i>
+                              </a>
+                              <a href="#" onclick="deleteModel('{{ m.id }}')" class="btn btn-danger btn-sm">
+                                   <i class="bi-trash"></i>
+                              </a>
+                         </td>
+                    </tr>
+     
+               {% endfor %}
+          </table>
+          <hr>
+          <div>
+               {% include 'appsmartip/paginator.html' %}
+          </div>
+     </div>
+</div>     
+
+
+
+{% endblock %}
