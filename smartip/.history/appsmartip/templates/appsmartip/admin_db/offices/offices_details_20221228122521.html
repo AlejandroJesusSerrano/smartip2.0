@@ -1,0 +1,91 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+active
+{% endblock %}
+
+{% block content %}
+<div class="row my-5">
+    <div class="col-12 col-md-8 offset-2">
+        <div class="card mx-auto">
+            <div class="card-header">
+                <h4 class="text-info text-center">Oficina: {{office.office_name }} / {{ office.court }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex justify-content-evenly">
+                    <div>
+                        <p class="card-title"><b>Localidad: </b>{{ office.location.location }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Edificio: </b>{{ office.edifice.edifice }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Piso: </b>{{ office.floor }}</p>
+                    </div>
+                </div>
+                <hr>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Usuarios en Oficina</h4>
+                            <div class="d-flex justify-content-between">
+                                {% for u in device_office %}
+                                <div class="card w-100 m-1">
+                                    <div class="card-header text-center">
+                                        <h5>{{ u.user.last_name }}, {{ u.user.name }}</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Usuario Pc: {{ u.user.username }}</h5>
+                                        <p class="card-text"><b>Usuario Mensajería: </b>{{ u.user.message_acount }}</p>
+                                        <p class="card-text"><b>E-m@il: </b>{{ u.user.email }}</p>
+                                        <hr>
+                                        <div class="card-header text-center">
+                                            <h6>Dispositivo</h6>
+                                        </div>
+                                        <p class="card-text"><b>Nombre en la Red: </b>{{ u.dev_name }}</p>
+
+                                    </div>
+                                    
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Dispositivos</h4>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text"><b>Ultima revision: </b>{{device.last_revision}}</p>
+                                <p class="card-text"><b>Tecnico a cargo: </b>{{device.tech_revision.last_name}},
+                                    {{device.tech_revision.name}}</p>
+                                <p class="card-text text-justify"><b>Motivo: </b>{{device.cause}}</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Locacion</h4>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text"><b>Localidad: </b>{{device.office.location}}</p>
+                                <p class="card-text"><b>Edificio: </b>{{device.office.edifice}}</p>
+                                <p class="card-text text-justify"><b>Piso: </b>{{device.office.floor}}</p>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text"><b>Juzgado: </b>{{device.office.court}}</p>
+                                <p class="card-text"><b>Oficina: </b>{{device.office.office_name}}</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a href="{% url 'Offices' %}" class="btn btn-info me-auto"><i class="bi-arrow-left"></i> Regresar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
