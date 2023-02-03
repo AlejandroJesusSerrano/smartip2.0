@@ -1,0 +1,92 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+active
+{% endblock %}
+
+{% block content %}
+<div class="row my-5">
+    <div class="col-12 col-md-8 offset-2">
+        <div class="card mx-auto">
+            <div class="card-header text-center">
+                <h4 class="text-info text-center">Usuario de Dispositivo: {{ user.last_name }}, {{ user.name }} / {{ user.username }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex pe-4 justify-content-between">
+                    <div class="ms-0">
+                        <a href="{% url 'DevUsers' %}" class="btn btn-info me-auto"><i class="bi-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>E-m@il: </b>{{ user.email }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Usuario de Mensajería: </b>{{ user.message_account }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Contraseña Mensajería: </b>{{ user.message_pass }}</p>
+                    </div>
+                </div>
+                <hr>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Dispositivos Asociados</h4>
+                            <div class="flex-row justify-content-between border-0">
+                                {% for du in device_user %}
+                                <div class="card border-0 my-1 w-100 flex-row">
+                                    <div class="flex-column w-100">
+                                        <div class="flex-column w-100">
+                                            <div class="card-body">
+                                                <p class="card-text"><b>Tipo: </b>{{ du.dev_type.dev_type | title }}</p>
+                                                <p class="card-text"><b>Marca: </b>{{ du.brand.brand | title }}</p>
+                                                <p class="card-text"><b>Modelo: </b>{{ du.model.model }}</p>
+                                                <div class="ms-0">
+                                                    <a href="{% url 'DevDetails' du.id %}" class="btn btn-info me-auto"><i class="bi-search"></i> Mas Info                                                   </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Impresoras y Scanners</h4>
+                            <div class="d-flex justify-content-between">
+                                <div class="card border-0 w-100 m-1">
+                                        {% for p in device_office %}
+                                            {% if flag == True and p.dev_type.dev_type == 'IMPRESORA' or p.dev_type.dev_type == 'SCANNER' %}
+                                            <div class="card-header list-group-item-dark text-center">
+                                                <h6>{{p.brand.brand | title}} - {{ p.model.model }}</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text"><b>Nombre en la Red: </b>{{ p.dev_name }}</p>
+                                                <p class="card-text"><b>Direccion Ip: </b>{{ p.ip_direction.ipdir }}</p>
+                                            </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if flag == False %}
+                                        <div class="card border-0">
+                                            <div class="card-body rounded-4 list-group-item-danger text-center">
+                                                <h6>Lo sentimos: no hay Impresoras o Scanners registrados en esta oficina</h6>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                </div>
+                            </div>
+                </ul>
+                <div class="card-body">
+                    <a href="{% url 'DevUsers' %}" class="btn btn-info me-auto"><i class="bi-arrow-left"></i> Regresar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
