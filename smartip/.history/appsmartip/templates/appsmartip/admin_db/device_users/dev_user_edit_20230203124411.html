@@ -1,0 +1,41 @@
+{% extends 'appsmartip/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block dbmanager_active %}
+active
+{% endblock %}
+
+{% block content %}
+{% load humanize %}
+
+<div class="row my-5">
+    <div class="col-12 col-md-6 offset-md-3">
+        <div class="card bg-dark mx-auto">
+            <div class="card-header border-light">
+                <h4 class="text-info text-center"> Modifique los campos del usuario de dispositivos </h4>
+            </div>
+            <div class="card-body text-light">
+                <form action="" method="post" enctype="multipart/form-data" class="text-light">
+
+                    {% csrf_token %}
+
+                    {{ dev_user_form_editas | crispy }}
+
+                    <div class="d-flex justify-content-end">
+                        <a href="{% url 'DevUsers' %}" class="btn btn-info me-auto">
+                            <i class="bi-arrow-left"></i>
+                            Regresar
+                        </a>
+
+                        <input type="reset" value="Cancelar" class="btn btn-secondary">
+                        &nbsp;
+                        <input type="submit" value="Guardar" class="btn btn-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

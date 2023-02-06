@@ -1,0 +1,95 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+active
+{% endblock %}
+
+{% block content %}
+<div class="row my-5">
+    <div class="col-12 col-md-8 offset-2">
+        <div class="card mx-auto">
+            <div class="card-header text-center">
+                <h4 class="text-info text-center">Usuario de Dispositivo: {{ user.last_name }}, {{ user.name }} / {{ user.username }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="d-flex pe-4 justify-content-between">
+                    <div class="ms-0">
+                        <a href="{% url 'DevUsers' %}" class="btn btn-info me-auto"><i class="bi-arrow-left"></i> Regresar
+                        </a>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>E-m@il: </b>{{ user.email }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Usuario de Mensajería: </b>{{ user.message_account }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Contraseña Mensajería: </b>{{ user.message_pass }}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex pe-4 justify-content-center">
+                    <div>
+                        <p class="card-title"><b>Acerca del Usuario: </b>{{ user.observations }}</p>
+                    </div>
+                </div>
+                <hr>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Dispositivos Asociados</h4>
+                        </div>
+                        <div class="d-flex">
+                            <div class="d-flex justify-content-between border-0">
+                                {% for du in device_user %}
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-evenly">
+                                            <div class="card" style="width: 18rem;">
+                                                <div class="contaiener" style="height: 10rem;">
+                                                    <img src="/media/{{ du.model.img }}" class="card-img-top w-100 h-100" alt="{{ du.model.img_desc }}">
+                                                </div>
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><b>Tipo: </b>{{ du.dev_type.dev_type | title }}</h5>
+                                                    <p class="card-text"><b>Marca: </b>{{ du.brand.brand | title }}</p>
+                                                    <p class="card-text"><b>Modelo: </b>{{ du.model.model }}</p>
+                                                    <div class="ms-0">
+                                                        <a href="{% url 'DevDetails' du.id %}" class="btn btn-info me-auto"><i class="bi-search"></i> Mas Info                                                   </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                                {% endfor %}
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="container">
+                            <h4 class="card-title text-center text-info">Oficina</h4>
+                                {% for o in device_user %}
+                                <div class="d-block justify-content-center">
+                                    <div class="card border-1 w-75 p-2 text-center">
+                                            <p><b>Nombre de la Oficina: </b> {{o.office.office_name}}</p>
+                                            <p><b>Ubicación: </b> {{o.office.mapping}}</p>
+                                            <div class="ms-0">
+                                                <a href="{% url 'OfficeDetails' o.id %}" class="btn btn-info me-auto"><i class="bi-search"></i> Mas Info                                                   </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                        </div>
+                </ul>
+                <hr>
+                <div class="card-body">
+                    <a href="{% url 'DevUsers' %}" class="btn btn-info me-auto"><i class="bi-arrow-left"></i> Regresar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
