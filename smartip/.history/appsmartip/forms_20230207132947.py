@@ -258,25 +258,33 @@ class EdifficeAddForm(forms.ModelForm):
                })
           }
 
-#* Court Add Form
+#! Court Add Form
 class CourtAddForm(forms.ModelForm):
-     
+     def clean_ediffice(self):
+          ediffice = self.cleaned_data['ediffice']
+          is_in = Edifice.objects.filter(ediffice__iexact=ediffice).exists()
+
+          if is_in:
+               raise ValidationError('El edificio ya se encuentra agregado a la base de datos')
+
+          return ediffice
+
      class Meta:
-          model =Court
+          model = Edifice
 
           fields = '__all__'
 
           labels = {
-               'court': ('Juzgado/Camara: ')
+               'edifice': ('Domicilio/Edificio: ')
           }
 
           help_texts = {
-               'court': ('Máximo 30 caracteres')
+               'edifice': ('Ingrese un domiicilio o el nombre de un edificio que sea identificable (Máximo 30 caracteres)')
 
           }
 
           widgets = {
-               'court': forms.TextInput(attrs={
+               'edifice': forms.TextInput(attrs={
                     'class': 'form-control'
                })
           }
@@ -417,7 +425,7 @@ class TechFormAdd(forms.ModelForm):
           fields = '__all__'
 
           labels = {
-               'name': ('Nombre del Tecnico: '),
+               'name': ('Nombre del Technico: '),
                'last_name': ('Apellido del Tecnico: '),
 
           }
@@ -554,7 +562,7 @@ class DeviceFormAdd(forms.ModelForm):
                'service_for': ('Seleccione el usuario para el cual es el servicio'),
                'device': ('Seleccione el dispositivo que presenta inconvenientes'),
                'ip_direction':('Si no existe la direccion ip, agreguela primero haciendo click en el boton "Agregar nueva direccion IP"'),
-               'last_revision': ('Ingrese un fecha con el formato DD/MM/AAAA'),
+               'last_revision': ('Ingrese un fecha con el formato DD-MM-AAAA'),
                'tech_revision':('Seleccione el técnico a cargo de la última revision'),
                'office':('Seleccione la oficina en la que se encuentra actualmente el dispositivo'),
           }

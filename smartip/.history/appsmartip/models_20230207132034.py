@@ -39,10 +39,6 @@ class Location(models.Model):
 class Court (models.Model):
      court = models.CharField(max_length=30)
 
-     def clean(self):
-          if Court.objects.filter(court__iexact=self.court).exists():
-               raise ValidationError ('El juzgado ya se encuentra incorporada a la base de datos')
-
      def __str__(self):
           return self.court
 class Edifice (models.Model):
