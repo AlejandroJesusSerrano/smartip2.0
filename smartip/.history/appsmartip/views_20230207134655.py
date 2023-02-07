@@ -599,13 +599,13 @@ def court_edit(request, id):
      
      return render(request, 'appsmartip/admin_db/court/court_edit.html', data)
 
-#! Delete Court
-@permission_required('appsmartip.delete_court')
+#! Delete Ediffice
+@permission_required('appsmartip.delete_edifice')
 def court_delete(request, id):
-     court = get_object_or_404(Court, id=id)
-     court.delete()
-     messages.success(request, 'Juzgado eliminado correctamente')
-     return redirect(to='Courts')
+     edifice = get_object_or_404(Edifice, id=id)
+     edifice.delete()
+     messages.success(request, 'Edificio eliminado correctamente')
+     return redirect(to='Ediffices')
 
 
 

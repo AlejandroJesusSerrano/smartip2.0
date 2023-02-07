@@ -258,25 +258,33 @@ class EdifficeAddForm(forms.ModelForm):
                })
           }
 
-#* Court Add Form
+#! Court Add Form
 class CourtAddForm(forms.ModelForm):
-     
+     def clean_ediffice(self):
+          ediffice = self.cleaned_data['ediffice']
+          is_in = Edifice.objects.filter(ediffice__iexact=ediffice).exists()
+
+          if is_in:
+               raise ValidationError('El edificio ya se encuentra agregado a la base de datos')
+
+          return ediffice
+
      class Meta:
-          model =Court
+          model = Edifice
 
           fields = '__all__'
 
           labels = {
-               'court': ('Juzgado/Camara: ')
+               'edifice': ('Domicilio/Edificio: ')
           }
 
           help_texts = {
-               'court': ('Máximo 30 caracteres')
+               'edifice': ('Ingrese un domiicilio o el nombre de un edificio que sea identificable (Máximo 30 caracteres)')
 
           }
 
           widgets = {
-               'court': forms.TextInput(attrs={
+               'edifice': forms.TextInput(attrs={
                     'class': 'form-control'
                })
           }

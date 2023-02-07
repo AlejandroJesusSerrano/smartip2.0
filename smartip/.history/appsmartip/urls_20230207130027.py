@@ -81,7 +81,7 @@ urlpatterns = [
      path('admin_db/ediffices/edit/<id>/', ediffice_edit, name='EdifficesEdit'),  
      path('delete_ediffice/<id>/', ediffice_delete, name='EdifficesDelete'),
 
-     #* Database Admin - Courts   
+     #* Database Admin - Ediffices   
      path('admin_db/courts/', courts, name='Courts'),   
      path('admin_db/court/add/', court_add, name='CourtAdd'),     
      path('admin_db/court/edit/<id>/', court_edit, name='CourtEdit'),  

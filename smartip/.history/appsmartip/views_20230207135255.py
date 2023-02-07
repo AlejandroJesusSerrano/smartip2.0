@@ -605,7 +605,7 @@ def court_delete(request, id):
      court = get_object_or_404(Court, id=id)
      court.delete()
      messages.success(request, 'Juzgado eliminado correctamente')
-     return redirect(to='Courts')
+     return redirect(to='Court')
 
 
 

@@ -539,7 +539,7 @@ def ediffice_edit(request, id):
           else:
                data['ediffice_edit_form'] = ediffice_edit
      
-     return render(request, 'appsmartip/admin_db/ediffices/ediffices_edit.html', data)
+     return render(request, 'appsmartip/admin_db/ediffices/ediffices.edit.html', data)
 
 #* Delete Ediffice
 @permission_required('appsmartip.delete_edifice')
@@ -580,32 +580,32 @@ def court_add(request):
      return render(request, 'appsmartip/admin_db/court/court_add.html', data)
 
 #! Edit Location
-@permission_required('appsmartip.modify_court')
+@permission_required('appsmartip.modify_edifice')
 def court_edit(request, id):
-     court = get_object_or_404(Court, id=id)
+     ediffice = get_object_or_404(Edifice, id=id)
      data={
-          'court_edit_form': CourtAddForm(instance=court)
+          'ediffice_edit_form': EdifficeAddForm(instance=ediffice)
      }
      
      if request.method == 'POST':
-          court_edit = CourtAddForm(data=request.POST, instance=court)
+          ediffice_edit = EdifficeAddForm(data=request.POST, instance=ediffice)
           
-          if court_edit.is_valid():
-               court_edit.save()
-               messages.success(request, 'Juzgado editado correctemente')
-               return redirect(to='Court')
+          if ediffice_edit.is_valid():
+               ediffice_edit.save()
+               messages.success(request, 'Edificio editado correctemente')
+               return redirect(to='Ediffices')
           else:
-               data['court_edit_form'] = court_edit
+               data['ediffice_edit_form'] = ediffice_edit
      
-     return render(request, 'appsmartip/admin_db/court/court_edit.html', data)
+     return render(request, 'appsmartip/admin_db/ediffices/ediffices.edit.html', data)
 
-#! Delete Court
-@permission_required('appsmartip.delete_court')
+#! Delete Ediffice
+@permission_required('appsmartip.delete_edifice')
 def court_delete(request, id):
-     court = get_object_or_404(Court, id=id)
-     court.delete()
-     messages.success(request, 'Juzgado eliminado correctamente')
-     return redirect(to='Courts')
+     edifice = get_object_or_404(Edifice, id=id)
+     edifice.delete()
+     messages.success(request, 'Edificio eliminado correctamente')
+     return redirect(to='Ediffices')
 
 
 
