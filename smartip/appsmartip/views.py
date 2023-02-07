@@ -908,7 +908,7 @@ def edit_dev_user(request, id):
      }
 
      if request.method == 'POST':
-          dev_user_edit = DevUsersFormAdd(request.POS, instance=dev_user)
+          dev_user_edit = DevUsersFormAdd(request.POST, instance=dev_user)
 
           if dev_user_edit.is_valid():
                dev_user_edit.save()
