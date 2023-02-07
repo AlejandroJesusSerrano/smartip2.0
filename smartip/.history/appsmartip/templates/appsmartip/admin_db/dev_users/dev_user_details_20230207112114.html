@@ -1,0 +1,43 @@
+{% extends 'appsmartip/base.html' %}
+
+{% load static %}
+
+{% block dbmanager_active %}
+active
+{% endblock %}
+
+{% block content %}
+
+<div class="row my-5">
+    <div class="col-12 col-md-8 offset-2">
+        <div class="card mx-auto">
+            <div class="card-header text-center">
+                <h4 class="text-info text-center">Usuario de Dispositivo: {{ user.last_name }}, {{ user.name }} / {{ user.username }}</h4>
+            </div>
+            <div class="card-body">
+                <div class="ms-0">
+                    <a href="{% url 'DevUsers' %}" class="btn btn-info me-auto"><i class="bi-arrow-left"></i> Regresar
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex pe-4 justify-content-between">
+                    
+                    <div>
+                        <p class="card-title"><b>E-m@il: </b>{{ user.email }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Usuario de Mensajería: </b>{{ user.message_account }}</p>
+                    </div>
+                    <div>
+                        <p class="card-title"><b>Contraseña Mensajería: </b>{{ user.message_pass }}</p>
+                    </div>
+                </div>
+                <hr>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

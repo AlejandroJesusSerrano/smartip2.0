@@ -858,7 +858,7 @@ def admin_db_dev_users(request):
           'entity': dev_users,
           'paginator': paginator
      }
-     return render(request, 'appsmartip/admin_db/dev_users/dev_users.html', data)
+     return render(request, 'appsmartip/admin_db/device_users/dev_users.html', data)
 
 # * Dev User Details
 @permission_required('appsmartip.view_dev_user')
@@ -876,9 +876,9 @@ def dev_user_details(request, id):
           'flag': flag,
      }
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_details.html', data)
+     return render(request, 'appsmartip/admin_db/device_users/dev_user_details.html', data)
 
-#* CRUD   
+#! CRUD   
 #* Add Device User
 @permission_required('appsmartip.add_dev_user')
 def add_dev_user(request):

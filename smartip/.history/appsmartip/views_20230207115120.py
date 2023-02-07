@@ -580,7 +580,7 @@ def admin_db_offices(request):
           'entity': offices, 
           'paginator': paginator
      }
-     return render(request, 'appsmartip/admin_db/offices/offices.html', data)
+     return render(request, 'appsmartip/admin_db/offices_copy/offices.html', data)
 
 #* Office Details
 @permission_required('appsmartip.view_office')
@@ -599,7 +599,7 @@ def office_details(request, id):
           'flag': flag
      }
 
-     return render(request, 'appsmartip/admin_db/offices/offices_details.html', data)
+     return render(request, 'appsmartip/admin_db/offices_copy/offices_details.html', data)
 
 #* CRUD
 #* Office Add
@@ -619,7 +619,7 @@ def offices_add(request):
           else:
                data['office_add'] = offices_add_form
 
-     return render(request, 'appsmartip/admin_db/offices/offices_add.html', data)
+     return render(request, 'appsmartip/admin_db/offices_copy/offices_add.html', data)
 
 #* Office Edit
 @permission_required('appsmartip.modify_office')
@@ -639,7 +639,7 @@ def offices_edit(request, id):
           else:
                data['office_edit_form'] = office_edit
 
-     return render(request, 'appsmartip/admin_db/offices/offices_edit.html', data)
+     return render(request, 'appsmartip/admin_db/offices_copy/offices_edit.html', data)
 
 #* Office Delete
 @permission_required('appsmartip.delelte_office')

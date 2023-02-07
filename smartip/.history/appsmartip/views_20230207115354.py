@@ -858,7 +858,7 @@ def admin_db_dev_users(request):
           'entity': dev_users,
           'paginator': paginator
      }
-     return render(request, 'appsmartip/admin_db/dev_users/dev_users.html', data)
+     return render(request, 'appsmartip/admin_db/dev_users_2/dev_users2.html', data)
 
 # * Dev User Details
 @permission_required('appsmartip.view_dev_user')
@@ -876,7 +876,7 @@ def dev_user_details(request, id):
           'flag': flag,
      }
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_details.html', data)
+     return render(request, 'appsmartip/admin_db/dev_users_2/dev_user_details2.html', data)
 
 #* CRUD   
 #* Add Device User
@@ -896,7 +896,7 @@ def add_dev_user(request):
           else:
                data['dev_user_form_add'] = dev_user_add
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_add.html', data)
+     return render(request, 'appsmartip/admin_db/dev_users_2/dev_user_add2.html', data)
 
 #* Edit Device User
 @permission_required('appsmartip.modify_dev_user')
@@ -917,7 +917,7 @@ def edit_dev_user(request, id):
           else:
                data['dev_user_form_edit'] = dev_user_edit
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_edit.html', data)
+     return render(request, 'appsmartip/admin_db/dev_users_2/dev_user_edit2.html', data)
 
 #* Delete Device User
 @permission_required('appsmartip.delete_dev_user')

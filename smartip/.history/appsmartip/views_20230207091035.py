@@ -642,7 +642,7 @@ def offices_edit(request, id):
      return render(request, 'appsmartip/admin_db/offices/offices_edit.html', data)
 
 #* Office Delete
-@permission_required('appsmartip.delelte_office')
+permission_required('appsmartip.delelte_office')
 def office_delete(request, id):
      office = get_object_or_404(Office, id=id)
      office.delete()
@@ -651,7 +651,7 @@ def office_delete(request, id):
 
 #* Device Status
 #* List Devices Status
-@permission_required('appsmartip.view_dev_status')
+permission_required('appsmartip.view_dev_status')
 def admin_db_dev_status(request):
      dev_status = DevStatus.objects.all()
 
@@ -663,7 +663,7 @@ def admin_db_dev_status(request):
 
 #* CRUD
 #* Dev Staus Add
-@permission_required('appsmartip.add_dev_status')
+permission_required('appsmartip.add_dev_status')
 def add_dev_status(request):
      data = {
           'dev_status_form_add': DevStatusFormAdd()
@@ -682,7 +682,7 @@ def add_dev_status(request):
      return render(request, 'appsmartip/admin_db/device_status/admin_db_dev_status_add.html', data)
 
 #* Dev Status Edit
-@permission_required('appsmartip.modify_dev_status')
+permission_required('appsmartip.modify_dev_status')
 def edit_dev_status(request, id):
      dev_status = get_object_or_404(DevStatus, id=id)
      data = {
@@ -702,7 +702,7 @@ def edit_dev_status(request, id):
      return render(request, 'appsmartip/admin_db/device_status/admin_db_dev_status_edit.html', data)
 
 #* Dev Status Delete
-@permission_required('appsmartip.delete_dev_status')
+permission_required('appsmartip.delete_dev_status')
 def delete_dev_status(request, id):
      dev_status = get_object_or_404(DevStatus, id=id)
      dev_status.delete()
@@ -711,7 +711,7 @@ def delete_dev_status(request, id):
 
 #* Pending Status
 #* List Pending Status
-@permission_required('appsmartip.view_pending_status')
+permission_required('appsmartip.view_pending_status')
 def admin_db_pen_status(request):
      pending_status = PendingStatus.objects.all()
 
@@ -723,7 +723,7 @@ def admin_db_pen_status(request):
 
 #* CRUD
 #* Pending Staus Add
-@permission_required('appsmartip.add_pending_status')
+permission_required('appsmartip.add_pending_status')
 def add_pen_status(request):
      data = {
           'pending_status_form_add': PendingStatusFormAdd()
@@ -742,7 +742,7 @@ def add_pen_status(request):
      return render(request, 'appsmartip/admin_db/pendings_status/admin_db_pen_status_add.html', data)
 
 #* Pending Status Edit
-@permission_required('appsmartip.modify_pending_status')
+permission_required('appsmartip.modify_pending_status')
 def edit_pen_status(request, id):
      pending_status = get_object_or_404(PendingStatus, id=id)
      data = {
@@ -762,7 +762,7 @@ def edit_pen_status(request, id):
      return render(request, 'appsmartip/admin_db/pendings_status/admin_db_pen_status_edit.html', data)
 
 #* Pending Status Delete
-@permission_required('appsmartip.delete_pending_status')
+permission_required('appsmartip.delete_pending_status')
 def delete_pen_status(request, id):
      pending_status = get_object_or_404(PendingStatus, id=id)
      pending_status.delete()
@@ -771,7 +771,7 @@ def delete_pen_status(request, id):
 
 #* Technicals
 #* List Technicals
-@permission_required('appsmartip.view_tech')
+permission_required('appsmartip.view_tech')
 def technicals(request):
      technicals = Tech.objects.all()
 
@@ -783,7 +783,7 @@ def technicals(request):
 
 #* CRUD
 #* Technical Add
-@permission_required('appsmartip.add_tech')
+permission_required('appsmartip.add_tech')
 def add_technical(request):
      data = {
           'technical_form_add': TechFormAdd()
@@ -802,7 +802,7 @@ def add_technical(request):
      return render(request, 'appsmartip/admin_db/techs/technicals_add.html', data)
 
 #* Technical Edit
-@permission_required('appsmartip.modify_tech')
+permission_required('appsmartip.modify_tech')
 def edit_technical(request, id):
      technical = get_object_or_404(Tech, id=id)
      data = {
@@ -822,7 +822,7 @@ def edit_technical(request, id):
      return render(request, 'appsmartip/admin_db/techs/technicals_edit.html', data)
 
 #* Technical Delete
-@permission_required('appsmartip.delete_tech')
+permission_required('appsmartip.delete_tech')
 def delete_technical(request, id):
      technical = get_object_or_404(Tech, id=id)
      technical.delete()
@@ -858,7 +858,7 @@ def admin_db_dev_users(request):
           'entity': dev_users,
           'paginator': paginator
      }
-     return render(request, 'appsmartip/admin_db/dev_users/dev_users.html', data)
+     return render(request, 'appsmartip/admin_db/device_users/dev_users.html', data)
 
 # * Dev User Details
 @permission_required('appsmartip.view_dev_user')
@@ -876,11 +876,11 @@ def dev_user_details(request, id):
           'flag': flag,
      }
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_details.html', data)
+     return render(request, 'appsmartip/admin_db/device_users/dev_user_details.html', data)
 
-#* CRUD   
+#! CRUD   
 #* Add Device User
-@permission_required('appsmartip.add_dev_user')
+permission_required('appsmartip.add_dev_user')
 def add_dev_user(request):
      data = {
           'dev_user_form_add': DevUsersFormAdd()
@@ -896,10 +896,10 @@ def add_dev_user(request):
           else:
                data['dev_user_form_add'] = dev_user_add
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_add.html', data)
+     return render(request, 'appsmartip/admin_db/device_users/dev_user_add.html', data)
 
 #* Edit Device User
-@permission_required('appsmartip.modify_dev_user')
+permission_required('appsmartip.modify_dev_user')
 def edit_dev_user(request, id):
      dev_user = get_object_or_404(DevUsers, id=id)
 
@@ -908,7 +908,7 @@ def edit_dev_user(request, id):
      }
 
      if request.method == 'POST':
-          dev_user_edit = DevUsersFormAdd(request.POS, instance=dev_user)
+          dev_user_edit = DevUsersFormAdd(request.POST, instance=dev_user)
 
           if dev_user_edit.is_valid():
                dev_user_edit.save()
@@ -917,10 +917,10 @@ def edit_dev_user(request, id):
           else:
                data['dev_user_form_edit'] = dev_user_edit
 
-     return render(request, 'appsmartip/admin_db/dev_users/dev_user_edit.html', data)
+     return render(request, 'appsmartip/admin_db/device_users/dev_user_edit.html', data)
 
 #* Delete Device User
-@permission_required('appsmartip.delete_dev_user')
+permission_required('appsmartip.delete_dev_user')
 def delete_dev_user(request, id):
      dev_user = get_object_or_404(DevUsers, id=id)
      dev_user.delete()

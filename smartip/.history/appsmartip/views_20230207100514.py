@@ -878,7 +878,7 @@ def dev_user_details(request, id):
 
      return render(request, 'appsmartip/admin_db/dev_users/dev_user_details.html', data)
 
-#* CRUD   
+#! CRUD   
 #* Add Device User
 @permission_required('appsmartip.add_dev_user')
 def add_dev_user(request):
