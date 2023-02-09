@@ -40,7 +40,7 @@ active
 <hr>
 
 <div class="d-flex">
-     <a href="{% url 'DevAdd' %}" class="btn btn-info btn-md ms-auto">
+     <a href="{% url 'DevAdd' %}" class="btn btn-info btn-md ms-auto me-3">
           Agregar dispositivo <i class="bi-plus-lg"></i>
      </a>
 </div>
@@ -73,11 +73,12 @@ active
                          <th class="text-center"><small>Tipo</small></th>
                          <th class="text-center"><small>Marca</small></th>
                          <th class="text-center"><small>Modelo</small></th>
-                         <th class="text-center"><small>Activo</small></th>
-                         <th class="text-center"><small>Trabajando</small></th>
+                         <th class="text-center"><small>Funciona</small></th>
+                         <th class="text-center"><small>Asignada</small></th>
                          <th class="text-center"><small>Usuario</small></th>
                          <th class="text-center"><small>Oficina</small></th>
                          <th class="text-center"><small>Ip</small></th>
+                         <th class="text-center"><small>Tipo de Acceso</small></th>
                          <th class="text-center"><small>Ùltima revision</small></th>
                          <th class="text-center"><small>Motivo</small></th>
                          <th class="text-center"><small>Acciones</small></th>
@@ -89,11 +90,20 @@ active
                               <td class="text-center"><small>{{ s.dev_type }}</small></td>
                               <td class="text-center"><small>{{ s.brand | title }}</small></td>
                               <td class="text-center"><small>{{ s.model }}</small></td>
-                              <td class="text-center"><small>{{ s.is_active }}</small></td>
-                              <td class="text-center"><small>{{ s.is_working }}</small></td>
+                              {% if s.is_working == True %}
+                                   <td class="text-center"><small>{{ "SI" }}</small></td>
+                              {% else %}
+                                   <td class="text-center"><small>{{ "NO" }}</small></td>
+                              {% endif %}
+                              {% if s.is_active == True %}
+                                   <td class="text-center"><small>{{ "SI" }}</small></td>
+                              {% else %}
+                                   <td class="text-center"><small>{{ "NO" }}</small></td>
+                              {% endif %}
                               <td class="text-center"><small>{{ s.user.last_name }}</small></td>
                               <td class="text-center"><small>{{ s.office }}</small></td>
                               <td class="text-center"><small>{{ s.ip_direction }}</small></td>
+                              <td class="text-center"><small>{{ s.ip_direction.internet_access }}</small></td>
                               <td class="text-center"><small>{{ s.last_revision }}</small></td>
                               <td class="text-center"><small>{{ s.cause }}</small></td>
                               <td>
@@ -104,7 +114,7 @@ active
                                    <a href="{% url 'DevEdit' s.id %}" class="btn btn-warning btn-sm">
                                         <i class="bi-pencil-square"></i>
                                    </a>
-                                   <a href="#" onclick="deleteModel({{ s.id }})" class="btn btn-danger btn-sm">
+                                   <a href="#" onclick="deleteModel('{{ s.id }}')" class="btn btn-danger btn-sm">
                                         <i class="bi-trash"></i>
                                    </a>
                               </td>

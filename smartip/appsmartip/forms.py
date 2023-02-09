@@ -417,7 +417,7 @@ class TechFormAdd(forms.ModelForm):
           fields = '__all__'
 
           labels = {
-               'name': ('Nombre del Technico: '),
+               'name': ('Nombre del Tecnico: '),
                'last_name': ('Apellido del Tecnico: '),
 
           }
@@ -509,7 +509,7 @@ class DevUsersFormAdd(forms.ModelForm):
                     'id': 'cuilNumber',
                }),
 
-               'observaations': forms.Textarea(attrs={
+               'observations': forms.Textarea(attrs={
                     'class': 'form-control',
                     'id': 'observations',
                }),
@@ -554,7 +554,7 @@ class DeviceFormAdd(forms.ModelForm):
                'service_for': ('Seleccione el usuario para el cual es el servicio'),
                'device': ('Seleccione el dispositivo que presenta inconvenientes'),
                'ip_direction':('Si no existe la direccion ip, agreguela primero haciendo click en el boton "Agregar nueva direccion IP"'),
-               'last_revision': ('Ingrese un fecha con el formato DD-MM-AAAA'),
+               'last_revision': ('Ingrese un fecha con el formato DD/MM/AAAA'),
                'tech_revision':('Seleccione el técnico a cargo de la última revision'),
                'office':('Seleccione la oficina en la que se encuentra actualmente el dispositivo'),
           }

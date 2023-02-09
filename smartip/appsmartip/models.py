@@ -78,9 +78,7 @@ class DevUsers(models.Model):
      username = models.CharField(max_length=6)
      standard_password = models.BooleanField()
      cuil = models.CharField(max_length=11)
-     observations = models.TextField()
-
-
+     observations = models.TextField(null=True, blank=True)
      def __str__(self):
           return self.username
 

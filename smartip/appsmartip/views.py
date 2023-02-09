@@ -1039,6 +1039,7 @@ def dev_manager(request):
                Q(brand__brand__icontains = search) |
                Q(model__model__icontains = search) |
                Q(ip_direction__ipdir__icontains = search) |
+               Q(ip_direction__internet_access__icontains = search) |
                Q(last_revision__icontains = search) |
                Q(cause__icontains = search) |
                Q(has_user__icontains = search) |
