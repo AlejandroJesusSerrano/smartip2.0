@@ -244,7 +244,8 @@ class EdifficeAddForm(forms.ModelForm):
           fields = '__all__'
 
           labels = {
-               'edifice': ('Domicilio/Edificio: ')
+               'edifice': ('Domicilio/Edificio: '),
+               'location': ('Localidad: ')
           }
 
           help_texts = {
@@ -255,6 +256,11 @@ class EdifficeAddForm(forms.ModelForm):
           widgets = {
                'edifice': forms.TextInput(attrs={
                     'class': 'form-control'
+               }),
+
+               'location': forms.Select(attrs={
+                    'class': 'form-control',
+                    'id': 'id_location'
                })
           }
 
@@ -267,7 +273,8 @@ class CourtAddForm(forms.ModelForm):
           fields = '__all__'
 
           labels = {
-               'court': ('Juzgado/Camara: ')
+               'court': ('Juzgado/Camara: '),
+               'edifice': ('Domicilio/Edificio: ')
           }
 
           help_texts = {
@@ -278,8 +285,13 @@ class CourtAddForm(forms.ModelForm):
           widgets = {
                'court': forms.TextInput(attrs={
                     'class': 'form-control'
+               }),
+
+               'edifice': forms.Select(attrs={
+                    'class': 'form-control',
+                    'id': 'id_location'
                })
-          }
+     }
 
 
 #* Office Form
@@ -294,7 +306,7 @@ class OfficeFormAdd(forms.ModelForm):
                'location': ('Localidad: '),
                'edifice': ('Edificio: '),
                'floor': ('Piso: '),
-               'court': ('Juzgado'),
+               'court': ('Juzgado: '),
                'office_name': ('Nombre de la Oficina: '),
                'phone_1': ('Telefono 1: '),
                'phone_2': ('Telefono 2: '),
