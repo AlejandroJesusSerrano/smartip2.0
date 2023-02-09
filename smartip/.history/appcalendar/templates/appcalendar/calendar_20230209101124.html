@@ -7,18 +7,16 @@
 {% endblock %}
 
 {% block content %}
-    <div id="calendar" class="container bg-light text-info"></div>
+<h1>test de calibracion</h1>
+
+    <p>Es la {{ Vista }}</p>
+    <p>de la {{ App }}</p>
+
+    <p>resultado de la suma: {{ Suma }}</p>
+
+    <div id="calendar"></div>
 {% endblock %}
 
 {% block js %}
 <script src="{% static 'appcalendar/fullcalendar/lib/main.min.js' %}"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function(){
-        let calendarUI = document.getElementById('calendar')
-        let calendar = new FullCalendar.Calendar(calendarUI, {
-
-        });
-        calendar.render();
-    });
-</script>
 {% endblock %}

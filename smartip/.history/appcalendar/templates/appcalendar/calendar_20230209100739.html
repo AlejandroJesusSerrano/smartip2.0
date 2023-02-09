@@ -1,0 +1,20 @@
+{% extends 'appsmartip/base.html' %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'fullcalendar/lib/main.min.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>test de calibracion</h1>
+
+    <p>Es la {{ Vista }}</p>
+    <p>de la {{ App }}</p>
+
+    <p>resultado de la suma: {{ Suma }}</p>
+
+    <div id="calendar"></div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'appcalendar/fullcalendar/lib/main.min.js' %}"></script>
+{% endblock %}
