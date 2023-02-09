@@ -509,7 +509,7 @@ class DevUsersFormAdd(forms.ModelForm):
                     'id': 'cuilNumber',
                }),
 
-               'observaations': forms.Textarea(attrs={
+               'observations': forms.Textarea(attrs={
                     'class': 'form-control',
                     'id': 'observations',
                }),

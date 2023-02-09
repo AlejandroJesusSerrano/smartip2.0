@@ -35,9 +35,15 @@ active
                 </div>
                 <hr>
                 <div class="d-flex pe-4 justify-content-center">
+                    {% if user.observations %}
                     <div>
                         <p class="card-title"><b>Acerca del Usuario: </b>{{ user.observations }}</p>
                     </div>
+                    {% else %}
+                    <div>
+                        <p class="card-title"><b>Acerca del Usuario: </b>Sin observaciones </p>
+                    </div>
+                    {% endif %}
                 </div>
                 <hr>
                 <ul class="list-group list-group-flush">
