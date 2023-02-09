@@ -141,7 +141,7 @@ class Pendings(models.Model):
      required_by = models.ForeignKey(DevUsers, related_name='user_require', on_delete=models.CASCADE)
      personal = models.BooleanField()
      service_for = models.ForeignKey(DevUsers, related_name='user_for', on_delete=models.CASCADE)
-     office = models.ForeignKey(Office, on_delete=models.CASCADE)
+     office = models.ForeignKey(Office, related_name='office', on_delete=models.CASCADE)
      device = models.ForeignKey(Device, on_delete=models.CASCADE)
      reason = RichTextField()
      state = models.ForeignKey(PendingStatus, default=1, on_delete=models.CASCADE)

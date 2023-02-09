@@ -112,7 +112,4 @@ urlpatterns = [
      path('pendings/pendings_list/', pending_list, name='PendingList'),
      path('pendings/pendings_edit/<id>', pending_edit, name='PendingEdit'),
 
-     #* appcalendar urls
-     path('appcalendar/', include ('appcalendar.urls')),
-
 ]
