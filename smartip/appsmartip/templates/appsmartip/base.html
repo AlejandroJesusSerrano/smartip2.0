@@ -51,6 +51,15 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           {% if user.is_authenticated %}
 
+            {% if perms.core.view_pendings %}
+            <li class="nav-item">
+
+              <a class="nav-link {% block agenda_active %} {% endblock  %}" href="{% url 'Calendar' %}">
+                Agenda
+              </a>
+            </li>
+            {% endif %}
+
             {% if perms.appsmartip.view_device %}
             <li class="nav-item">
               <a class="nav-link {% block devmanager_active %} {% endblock  %}" href="{% url 'DevManager' %}">
@@ -202,15 +211,7 @@
             </li>
             {% endif %}
 
-            {% if perms.core.view_pendings %}
-            <li class="nav-item">
-
-              <a class="nav-link {% block agenda_active %} {% endblock  %}" href="{% url 'Pending' %}">
-                Agenda
-              </a>
-
-            </li>
-            {% endif %}
+            
           </ul>
           
           <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
