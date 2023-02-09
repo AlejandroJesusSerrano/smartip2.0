@@ -135,7 +135,7 @@ class PendingStatus(models.Model):
           return self.status
      
 class Pendings(models.Model):
-     date = models.DateTimeField(auto_now=False, auto_now_add=True)
+     date = models.DateTimeField(auto_now=False, auto_now_add=False)
      required_by = models.ForeignKey(DevUsers, related_name='user_require', on_delete=models.CASCADE)
      personal = models.BooleanField()
      service_for = models.ForeignKey(DevUsers, related_name='user_for', on_delete=models.CASCADE)
