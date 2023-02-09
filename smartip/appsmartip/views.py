@@ -579,7 +579,7 @@ def court_add(request):
 
      return render(request, 'appsmartip/admin_db/court/court_add.html', data)
 
-#! Edit Location
+#! Edit Court
 @permission_required('appsmartip.modify_court')
 def court_edit(request, id):
      court = get_object_or_404(Court, id=id)
@@ -593,7 +593,7 @@ def court_edit(request, id):
           if court_edit.is_valid():
                court_edit.save()
                messages.success(request, 'Juzgado editado correctemente')
-               return redirect(to='Court')
+               return redirect(to='Courts')
           else:
                data['court_edit_form'] = court_edit
      

@@ -31,25 +31,27 @@ class Internet(models.Model):
           return self.access_type
           
 class Location(models.Model):
-     location = models.CharField(max_length=12)
+     location = models.CharField(max_length=14)
 
      def __str__(self):
           return self.location
+class Edifice (models.Model):
+     edifice = models.CharField(max_length=30)
+     location = models.ForeignKey(Location, on_delete = models.CASCADE)
+
+     def __str__(self):
+          return self.edifice
 
 class Court (models.Model):
      court = models.CharField(max_length=30)
-
+     edifice = models.ForeignKey(Edifice, on_delete = models.CASCADE)
+     
      def clean(self):
           if Court.objects.filter(court__iexact=self.court).exists():
                raise ValidationError ('El juzgado ya se encuentra incorporada a la base de datos')
 
      def __str__(self):
           return self.court
-class Edifice (models.Model):
-     edifice = models.CharField(max_length=30)
-
-     def __str__(self):
-          return self.edifice
 
 class Office(models.Model):
      location = models.ForeignKey(Location, on_delete=models.CASCADE)
